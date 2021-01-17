@@ -13,7 +13,12 @@ public class ImageRepository {
       * @param String name - name of image
       * @return Image - data including name, size and url of image */
     public Image getImage(String name) {
-        return this.imageStorage.imageMap.containsKey(name) ? this.imageStorage.imageMap.get(name).data : null;
+      if (this.imageStorage.imageMap.containsKey(name)) {
+        return this.imageStorage.imageMap.get(name).data;
+      } else {
+        System.err.println("Image cannot be found in repository");
+        return null;
+      }
     }
 
     /*
@@ -33,6 +38,8 @@ public class ImageRepository {
     public void deleteImage(String name) {
         if (this.imageStorage.imageMap.containsKey(name)) {
             this.imageStorage.delete(this.imageStorage.imageMap.get(name));
+        } else {
+          System.err.println("Image cannot be deleted since it does not exist in repository");
         }
     }
 
@@ -47,6 +54,8 @@ public class ImageRepository {
     public ImageRepository(int capacity) {
         if (capacity > 0) {
             this.imageStorage = new ImageList(capacity);
+        } else {
+          System.err.println("Capacity of image repository must be greater than 0 kbs");
         }
     }
 

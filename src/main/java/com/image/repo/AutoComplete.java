@@ -78,10 +78,12 @@ public class AutoComplete {
       * @return ArrayList of Type String - List of Autocomplete searches from prefix */
     private ArrayList<String> autoCompleteTraversal(CharNode currNode, String prefix) {
         ArrayList<String> list = new ArrayList<String>();
+        //base case
         if (currNode.terminal == true) {
             list.add(prefix);
         }
         for (char c: currNode.children.keySet()) {
+            //dfs traversal through data structure
             ArrayList<String> sublist = autoCompleteTraversal(currNode.children.get(c), prefix+Character.toString(c));
             list.addAll(sublist);
         }
