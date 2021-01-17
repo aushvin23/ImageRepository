@@ -44,6 +44,17 @@ public class ImageRepository {
     }
 
     /*
+      * @desc gets list of all image names 
+      * @return List of Strings of all image names */
+    public ArrayList<String> getAllImages() {
+      ArrayList<String> allImagesList = new ArrayList<String>();
+      for (String name: this.imageStorage.imageMap.keySet()) {
+        allImagesList.add(name);
+      }
+      return allImagesList;
+    }
+
+    /*
       * @desc get list of autocomplete search from prefix
       * @param String prefix - prefix used to search from list
       * @return List of autocomplete search */
@@ -70,7 +81,7 @@ public class ImageRepository {
         imageRepo.uploadImage("aushvin at yosemite", 100, "https://aushvin.com/images/yosemite");
         imageRepo.uploadImage("aushvin at big sur", 1000, "https://aushvin.com/images/big_sur");
         imageRepo.uploadImage("aushvin at", 10, "https://aushvin.com/images/aushvin_at");
-
+        imageRepo.deleteImage("aushvin at the basketball game");
         System.out.println(imageRepo.imageStorage.autoCompleteSearch("aushvin at"));
     }
 }

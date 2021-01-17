@@ -104,7 +104,20 @@ public class ImageRepositoryTest {
         assertNull(image);
     }
 
+    @Test 
+    public void getListOfAllImages() {
+        ImageRepository imageRepo = new ImageRepository(500);
+        imageRepo.uploadImage("testImage1", 350, "https://images.com/testImage1");
+        imageRepo.uploadImage("testImage2", 50, "https://images.com/testImage2");
+        imageRepo.uploadImage("testImage3", 50, "https://images.com/testImage3");
+        ArrayList<String> list = imageRepo.getAllImages();
+        int size = list.size();
+        assertTrue(list.contains("testImage1"));
+        assertTrue(list.contains("testImage2"));
+        assertTrue(list.contains("testImage3"));
+        assertEquals(size, 3);
 
+    }
 
 
 }
