@@ -14,7 +14,7 @@ public class ImageRepository {
       * @return Image - data including name, size and url of image */
     public Image getImage(String name) {
       if (this.imageStorage.imageMap.containsKey(name)) {
-        return this.imageStorage.imageMap.get(name).data;
+        return this.imageStorage.getImage(name).data;
       } else {
         System.err.println("Image cannot be found in repository");
         return null;

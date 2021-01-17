@@ -45,7 +45,7 @@ public class ImageList {
       * @desc get ImageNode from name
       * @param String name - name of ImageNode to be retrieved
       * @return ImageNode - returns ImageNode from name of image */
-    private ImageNode getImage(String name) {
+    public ImageNode getImage(String name) {
         ImageNode currentImageNode = (this.imageMap.containsKey(name)) ? this.imageMap.get(name) : null;
         //error handling
         if (currentImageNode == null) return currentImageNode;
