@@ -1,5 +1,4 @@
 package com.image.repo;
-
 import java.util.ArrayList;
 
 /*
@@ -46,7 +45,9 @@ public class ImageRepository {
     }
 
     public ImageRepository(int capacity) {
-        this.imageStorage = new ImageList(capacity);
+        if (capacity > 0) {
+            this.imageStorage = new ImageList(capacity);
+        }
     }
 
     public static void main(String[] args) {

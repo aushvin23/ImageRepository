@@ -50,8 +50,4 @@ public class ImageListTest
         imageList.delete(imageList.imageMap.get("image to be removed"));
         assert(!imageList.imageMap.containsKey("image to be removed"));
     }
-
-
-
-    // what happens if they initialize a negative capacity?!??!?
 }
