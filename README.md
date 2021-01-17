@@ -13,7 +13,8 @@ ImageRepository class provides four methods as shown below:
 - `getImage(String name)` - Gets image data including image name, size and url location from repository for specified name.
 - `uploadImage(String name, int size, String url)` - Uploads image to repository for specified data.
 - `deleteImage(String name)` - Removes the image for specified name.
-- `autoCompleteSearch(String prefix)` - Gets list of autocomplete suggestions from given prefix
+- `getAllImages()` - Get all image names from image repository.
+- `autoCompleteSearch(String prefix)` - Gets list of autocomplete image suggestions from given prefix
 
 Simple implementation of API
 
