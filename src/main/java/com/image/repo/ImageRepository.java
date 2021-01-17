@@ -2,23 +2,45 @@ package com.image.repo;
 
 import java.util.ArrayList;
 
+/*
+  * @desc this class will hold methods for functionality of image repository
+  * methods include uploadImage(name, size, url), deleteImage(name), autoCompleteSearch(prefix), getImage(name)
+*/
 public class ImageRepository {
     ImageList imageStorage;
 
+    /*
+      * @desc get Image data using name of image from repository
+      * @param String name - name of image
+      * @return Image - data including name, size and url of image */
     public Image getImage(String name) {
         return this.imageStorage.imageMap.containsKey(name) ? this.imageStorage.imageMap.get(name).data : null;
     }
 
+    /*
+      * @desc upload image to repository
+      * @param String name - name of image
+      * @param int size - size of image
+      * @param String url - location of image url
+      * @return void */
     public void uploadImage(String name, int size, String url) {
         this.imageStorage.uploadImage(name, size, url);
     }
 
+    /*
+      * @desc delete image from repository using image name
+      * @param String name - name of image
+      * @return void */
     public void deleteImage(String name) {
         if (this.imageStorage.imageMap.containsKey(name)) {
             this.imageStorage.delete(this.imageStorage.imageMap.get(name));
         }
     }
 
+    /*
+      * @desc get list of autocomplete search from prefix
+      * @param String prefix - prefix used to search from list
+      * @return List of autocomplete search */
     public ArrayList<String> autoCompleteSearch(String prefix) {
         return this.imageStorage.autoCompleteSearch(prefix);
     }
@@ -28,7 +50,9 @@ public class ImageRepository {
     }
 
     public static void main(String[] args) {
+
         ImageRepository imageRepo = new ImageRepository(500);
+
         imageRepo.uploadImage("aushvin at the gym", 100, "https://aushvin.com/images/gym");
         imageRepo.uploadImage("aushvin at school", 50, "https://aushvin.com/images/school");
         imageRepo.uploadImage("aushvin at work", 300, "https://aushvin.com/images/work");
@@ -38,6 +62,5 @@ public class ImageRepository {
         imageRepo.uploadImage("aushvin at", 10, "https://aushvin.com/images/aushvin_at");
 
         System.out.println(imageRepo.imageStorage.autoCompleteSearch("aushvin at"));
-
     }
 }

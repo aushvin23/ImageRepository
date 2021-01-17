@@ -1,11 +1,16 @@
 package com.image.repo;
-
 import java.util.ArrayList;
 
+/*
+  * @desc this class will hold methods for autocomplete functionality
+  * methods include insertion(word), deleteWord(word), searchWord(word), autoCompleteSearch(prefix)
+*/
 public class AutoComplete {
     private CharNode root;
-
-    //inserts word into data structure 
+    /*
+      * @desc inserts word into data structure
+      * @param string word - the word to be inserted
+      * @return void */
     public void insertion(String word) {
         if (word == null || word.length() == 0) return;
         CharNode currNode = this.root;
@@ -18,6 +23,10 @@ public class AutoComplete {
         currNode.terminal = true;
     }
 
+    /*
+      * @desc deletes word from data structure
+      * @param string word - the word to be deleted
+      * @return void */
     public void deleteWord(String word) {
         if (word == null || word.length() == 0 || !this.searchWord(word)) return;
         CharNode currNode = this.root;
@@ -27,6 +36,28 @@ public class AutoComplete {
         currNode.terminal = false;
     }
 
+    /*
+      * @desc checks if word exists in data structure
+      * @param string word - the word of interest to check if exists
+      * @return boolean - true or false */
+    public boolean searchWord(String word) {
+        if (word == null || word.length() == 0) return false;
+        CharNode node = this.root;
+        for (char c: word.toCharArray()) {
+            if (node.children.containsKey(c)) {
+                node = node.children.get(c);
+            } else {
+                node = null;
+                break;
+            }
+        }
+        return node != null && node.terminal == true;
+    }
+
+    /*
+      * @desc get a list of names with the same prefix
+      * @param string prefix - prefix that is used to search  
+      * @return ArrayList of Type String - List of Autocomplete searches from prefix */
     public ArrayList<String> autoCompleteSearch(String prefix) {
         CharNode currNode = this.root;
         ArrayList<String> searchList = new ArrayList<String>();
@@ -40,6 +71,11 @@ public class AutoComplete {
         return autoCompleteTraversal(currNode, prefix);
     }
 
+    /*
+      * @desc recursive DFS traversal helper function to autoCompleteSearch
+      * @param CharNode currNode - Node of last prefix 
+      * @param String prefix - prefix that is used to search in data structure  
+      * @return ArrayList of Type String - List of Autocomplete searches from prefix */
     private ArrayList<String> autoCompleteTraversal(CharNode currNode, String prefix) {
         ArrayList<String> list = new ArrayList<String>();
         if (currNode.terminal == true) {
@@ -50,20 +86,6 @@ public class AutoComplete {
             list.addAll(sublist);
         }
         return list;
-    }
-
-    public boolean searchWord(String word) {
-        if (word == null || word.length() == 0) return false;
-        CharNode node = this.root;
-        for (char c: word.toCharArray()) {
-            if (node.children.containsKey(c)) {
-                node = node.children.get(c);
-            } else {
-                node = null;
-                break;
-            }
-        }
-        return node != null && node.terminal == true;
     }
 
     public AutoComplete() {
