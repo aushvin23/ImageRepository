@@ -16,12 +16,32 @@ ImageRepository class provides four methods as shown below:
 - `getAllImages()` - Get all image names from image repository.
 - `autoCompleteSearch(String prefix)` - Gets list of autocomplete image suggestions from given prefix
 
-Simple implementation of API
+Simple implementation 
 
 ```java
 ImageRepository imageRepo = new ImageRepository(500);
 imageRepo.uploadImage("hotwheelscar", 100, "https://hotwheelscars.com/images/1");
 ```
+
+Compiles all files to a specified target folder
+
+```
+$ javac ./src/main/java/com/image/repo/*.java -d ./target/classes
+```
+
+Run the main method with the image repository
+
+```
+$ java -Dfile.encoding=UTF-8 -cp ./target/classes com.image.repo.ImageRepository 
+```
+
+Expected Output
+
+```
+[aushvin at, aushvin at school, aushvin at work, aushvin at yosemite]
+```
+
+
 
 ## Architecture 
 
