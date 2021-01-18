@@ -59,7 +59,7 @@ Autocomplete suggestions retrieval using trie data structure from given prefix. 
 ## Test
 
 ```sh
-mvn clean test
+$ mvn clean test
 ```
 
 ## Support
