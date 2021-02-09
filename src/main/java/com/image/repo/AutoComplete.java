@@ -82,6 +82,7 @@ public class AutoComplete {
         if (currNode.terminal == true) {
             list.add(prefix);
         }
+        //recurrence relation
         for (char c: currNode.children.keySet()) {
             //dfs traversal through data structure
             ArrayList<String> sublist = autoCompleteTraversal(currNode.children.get(c), prefix+Character.toString(c));
