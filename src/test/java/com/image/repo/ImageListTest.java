@@ -16,7 +16,11 @@ public class ImageListTest
         ImageList imageList = new ImageList(100);
         imageList.uploadImage("update image", 50, "https://test.com");
         imageList.uploadImage("update image", 75, "https://test.com/update");
-        assertTrue(imageList.imageMap.get("update image").data.imageURL == "https://test.com/update");
+
+        String expectedOutput = "https://test.com/update";
+        String actualOutput = imageList.imageMap.get("update image").data.imageURL;
+
+        assertEquals(expectedOutput, actualOutput);
     }
 
     @Test
@@ -30,7 +34,8 @@ public class ImageListTest
     public void testAddImageWithNegativeSize() {
         ImageList imageList = new ImageList(100);
         imageList.uploadImage("image size less than 0", -100, "https://test.com");
-        assertTrue(!imageList.imageMap.containsKey("iamge size less than 0"));
+
+        assertTrue(!imageList.imageMap.containsKey("image size less than 0"));
     }
 
     @Test
@@ -39,7 +44,8 @@ public class ImageListTest
         imageList.uploadImage("image to be removed", 50, "https://test.com");
         imageList.uploadImage("image input", 25, "https://test.com/imageinput");
         imageList.uploadImage("image input 2", 50, "https://test.com/imageinput2");
-        assertTrue(!imageList.imageMap.containsKey("iamge to be removed"));
+
+        assertTrue(!imageList.imageMap.containsKey("image to be removed"));
     }
 
     @Test
@@ -48,6 +54,7 @@ public class ImageListTest
         imageList.uploadImage("image to be removed", 50, "https://test.com");
         imageList.uploadImage("image input", 25, "https://test.com/imageinput");
         imageList.delete(imageList.imageMap.get("image to be removed"));
+        
         assert(!imageList.imageMap.containsKey("image to be removed"));
     }
 }

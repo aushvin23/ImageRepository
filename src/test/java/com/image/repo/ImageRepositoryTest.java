@@ -1,7 +1,9 @@
 package com.image.repo;
 import static org.junit.Assert.*;
 import org.junit.Test;
-import java.util.ArrayList;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class ImageRepositoryTest {
     @Test
@@ -9,7 +11,7 @@ public class ImageRepositoryTest {
         ImageRepository imageRepo = new ImageRepository(500);
         imageRepo.uploadImage("testImage1", 50, "https://images.com/testImage1");
         imageRepo.uploadImage("testImage2", 50, "https://images.com/testImage2");
-        ArrayList<String> autoCompleteResults = imageRepo.autoCompleteSearch("t"); 
+        List<String> autoCompleteResults = imageRepo.autoCompleteSearch("t"); 
 
 
         assertTrue(imageRepo.imageStorage.imageMap.containsKey("testImage1"));
@@ -27,7 +29,8 @@ public class ImageRepositoryTest {
         ImageRepository imageRepo = new ImageRepository(500);
         imageRepo.uploadImage("testImage1", 550, "https://images.com/testImage1");
         imageRepo.uploadImage("testImage2", 50, "https://images.com/testImage2");
-        ArrayList<String> autoCompleteResults = imageRepo.autoCompleteSearch("t"); 
+
+        List<String> autoCompleteResults = imageRepo.autoCompleteSearch("t"); 
 
         assertTrue(!imageRepo.imageStorage.imageMap.containsKey("testImage1"));
         assertTrue(!imageRepo.imageStorage.search.searchWord("testImage1"));
@@ -41,7 +44,7 @@ public class ImageRepositoryTest {
         imageRepo.uploadImage("testImage2", 50, "https://images.com/testImage2");
         imageRepo.uploadImage("testImage3", 50, "https://images.com/testImage3");
         imageRepo.uploadImage("testImage4", 100, "https://images.com/testImage4");
-        ArrayList<String> autoCompleteResults = imageRepo.autoCompleteSearch("t"); 
+        List<String> autoCompleteResults = imageRepo.autoCompleteSearch("t"); 
 
         assertTrue(!imageRepo.imageStorage.imageMap.containsKey("testImage1"));
         assertTrue(!imageRepo.imageStorage.search.searchWord("testImage1"));
@@ -56,7 +59,8 @@ public class ImageRepositoryTest {
         imageRepo.uploadImage("testImage3", 50, "https://images.com/testImage3");
 
         imageRepo.deleteImage("testImage1");
-        ArrayList<String> autoCompleteResults = imageRepo.autoCompleteSearch("t"); 
+
+        List<String> autoCompleteResults = imageRepo.autoCompleteSearch("t"); 
 
         assertTrue(!imageRepo.imageStorage.imageMap.containsKey("testImage1"));
         assertTrue(!imageRepo.imageStorage.search.searchWord("testImage1"));
@@ -72,7 +76,7 @@ public class ImageRepositoryTest {
 
         int sizeBeforeInvalidDelete = imageRepo.imageStorage.imageMap.size();
         imageRepo.deleteImage("testImage4");
-        ArrayList<String> autoCompleteResults = imageRepo.autoCompleteSearch("t"); 
+        List<String> autoCompleteResults = imageRepo.autoCompleteSearch("t"); 
 
         assertTrue(imageRepo.imageStorage.imageMap.size() == sizeBeforeInvalidDelete);
         assertTrue(autoCompleteResults.size() == sizeBeforeInvalidDelete);
@@ -110,13 +114,12 @@ public class ImageRepositoryTest {
         imageRepo.uploadImage("testImage1", 350, "https://images.com/testImage1");
         imageRepo.uploadImage("testImage2", 50, "https://images.com/testImage2");
         imageRepo.uploadImage("testImage3", 50, "https://images.com/testImage3");
-        ArrayList<String> list = imageRepo.getAllImages();
-        int size = list.size();
-        assertTrue(list.contains("testImage1"));
-        assertTrue(list.contains("testImage2"));
-        assertTrue(list.contains("testImage3"));
-        assertEquals(size, 3);
 
+        List<String> actualOutput = imageRepo.getAllImages();
+        List<String> expectedOutput = Arrays.asList("testImage1", "testImage2", "testImage3");
+
+
+        assertEquals(expectedOutput, actualOutput);
     }
 
 

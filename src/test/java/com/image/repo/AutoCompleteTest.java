@@ -2,6 +2,8 @@ package com.image.repo;
 import static org.junit.Assert.*;
 import org.junit.Test;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class AutoCompleteTest {
 
@@ -17,6 +19,7 @@ public class AutoCompleteTest {
         AutoComplete wordBank = new AutoComplete();
         String word = "test";
         wordBank.insertion(word);
+
         assertTrue(wordBank.searchWord(word));
     }
 
@@ -25,6 +28,7 @@ public class AutoCompleteTest {
         AutoComplete wordBank = new AutoComplete();
         String word = "";
         wordBank.insertion(word);
+
         assertTrue(!wordBank.searchWord(word));
     }
 
@@ -33,6 +37,7 @@ public class AutoCompleteTest {
         AutoComplete wordBank = new AutoComplete();
         String word = null;
         wordBank.insertion(null);
+        
         assertTrue(!wordBank.searchWord(word));
     }
 
@@ -54,13 +59,10 @@ public class AutoCompleteTest {
         wordBank.insertion("hello neptune");
         wordBank.insertion("hello venus");
 
-        ArrayList<String> autoComplete = wordBank.autoCompleteSearch("hello");
+        List<String> actualOutput = wordBank.autoCompleteSearch("hello");
+        List<String> expectedOutput = Arrays.asList("hello saturn", "hello venus", "hello world", "hello moon", "hello neptune");
 
-        assertTrue(autoComplete.contains("hello world"));
-        assertTrue(autoComplete.contains("hello saturn"));
-        assertTrue(autoComplete.contains("hello moon"));
-        assertTrue(autoComplete.contains("hello neptune"));
-        assertTrue(autoComplete.contains("hello venus"));
+        assertEquals(expectedOutput, actualOutput);
     }
 
     @Test
@@ -70,8 +72,10 @@ public class AutoCompleteTest {
         wordBank.insertion("hello saturn");
         wordBank.insertion("hello moon");
 
-        ArrayList<String> autoComplete = wordBank.autoCompleteSearch("mooon");
-        assertTrue(autoComplete.size() == 0);
+        List<String> actualOutput = wordBank.autoCompleteSearch("mooon");
+        List<String> expectedOutput = new ArrayList<>();
+
+        assertEquals(expectedOutput, actualOutput);
     }
 }
 

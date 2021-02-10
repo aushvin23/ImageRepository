@@ -1,4 +1,5 @@
 package com.image.repo;
+import java.util.List;
 import java.util.ArrayList;
 
 /*
@@ -57,10 +58,10 @@ public class AutoComplete {
     /*
       * @desc get a list of names with the same prefix
       * @param string prefix - prefix that is used to search  
-      * @return ArrayList of Type String - List of Autocomplete searches from prefix */
-    public ArrayList<String> autoCompleteSearch(String prefix) {
+      * @return List of Type String - List of Autocomplete searches from prefix */
+    public List<String> autoCompleteSearch(String prefix) {
         CharNode currNode = this.root;
-        ArrayList<String> searchList = new ArrayList<String>();
+        List<String> searchList = new ArrayList<String>();
         for (char c: prefix.toCharArray()) {
             if (!currNode.children.containsKey(c)) {
                 return searchList;
@@ -75,9 +76,9 @@ public class AutoComplete {
       * @desc recursive DFS traversal helper function to autoCompleteSearch
       * @param CharNode currNode - Node of last prefix 
       * @param String prefix - prefix that is used to search in data structure  
-      * @return ArrayList of Type String - List of Autocomplete searches from prefix */
-    private ArrayList<String> autoCompleteTraversal(CharNode currNode, String prefix) {
-        ArrayList<String> list = new ArrayList<String>();
+      * @return List of Type String - List of Autocomplete searches from prefix */
+    private List<String> autoCompleteTraversal(CharNode currNode, String prefix) {
+        List<String> list = new ArrayList<String>();
         //base case
         if (currNode.terminal == true) {
             list.add(prefix);
@@ -85,7 +86,7 @@ public class AutoComplete {
         //recurrence relation
         for (char c: currNode.children.keySet()) {
             //dfs traversal through data structure
-            ArrayList<String> sublist = autoCompleteTraversal(currNode.children.get(c), prefix+Character.toString(c));
+            List<String> sublist = autoCompleteTraversal(currNode.children.get(c), prefix+Character.toString(c));
             list.addAll(sublist);
         }
         return list;

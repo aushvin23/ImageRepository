@@ -1,6 +1,7 @@
 package com.image.repo;
 import java.util.HashMap;
-import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /*
   * @desc this class will hold methods for functionality of image repository
@@ -11,7 +12,7 @@ public class ImageList {
     private int capacity;
     private ImageNode head;
     private ImageNode tail;
-    public HashMap<String, ImageNode> imageMap;
+    public Map<String, ImageNode> imageMap;
     public AutoComplete search;
 
     /*
@@ -130,8 +131,8 @@ public class ImageList {
     /*
       * @desc get autocomplete search from prefix 
       * @param String prefix - prefix used to get list of autocomplete search
-      * @return ArrayList of Strings - list of autocomplete search from prefix */
-    public ArrayList<String> autoCompleteSearch(String prefix) {
+      * @return List of Strings - list of autocomplete search from prefix */
+    public List<String> autoCompleteSearch(String prefix) {
         return this.search.autoCompleteSearch(prefix);
     }
 

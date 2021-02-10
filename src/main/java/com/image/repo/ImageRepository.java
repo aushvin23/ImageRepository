@@ -1,5 +1,6 @@
 package com.image.repo;
 import java.util.ArrayList;
+import java.util.List;
 
 /*
   * @desc this class will hold methods for functionality of image repository
@@ -46,8 +47,8 @@ public class ImageRepository {
     /*
       * @desc gets list of all image names 
       * @return List of Strings of all image names */
-    public ArrayList<String> getAllImages() {
-      ArrayList<String> allImagesList = new ArrayList<String>();
+    public List<String> getAllImages() {
+      List<String> allImagesList = new ArrayList<String>();
       for (String name: this.imageStorage.imageMap.keySet()) {
         allImagesList.add(name);
       }
@@ -58,7 +59,7 @@ public class ImageRepository {
       * @desc get list of autocomplete search from prefix
       * @param String prefix - prefix used to search from list
       * @return List of autocomplete search */
-    public ArrayList<String> autoCompleteSearch(String prefix) {
+    public List<String> autoCompleteSearch(String prefix) {
         return this.imageStorage.autoCompleteSearch(prefix);
     }
 
