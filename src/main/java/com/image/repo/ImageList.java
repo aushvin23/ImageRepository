@@ -20,19 +20,15 @@ public class ImageList {
       * @param ImageNode currentImage - image to be inserted
       * @return void */
     private void add(ImageNode currentImage) {
-        //check if its large enough to upload
         if (currentImage.data.size <= this.capacity && currentImage.data.size > 0) {
             //nodes are always added to the front of list since most recently used
-            //point currentImage node 
             currentImage.prev = this.head;
             currentImage.next = this.head.next;
             //head pointers -> slide the head.next behind new node 
             ImageNode tempNext = head.next;
             tempNext.prev = currentImage;
             head.next = currentImage;
-            //increase storage size
             this.size += currentImage.data.size;
-            //insert into imageMap
             this.imageMap.put(currentImage.data.name, currentImage);
             this.search.insertion(currentImage.data.name);
             //if above capacity, remove least recently used until size < capacity
@@ -67,7 +63,6 @@ public class ImageList {
             ImageNode newImageNode = new ImageNode(new Image(name, size, url));
             this.add(newImageNode);
         } else {
-            //image exists 
             updateImage(name, size, url);
         }
     }
@@ -79,8 +74,7 @@ public class ImageList {
       * @param String url - url location of image to be updated
       * @return void */
     private void updateImage(String name, int size, String url) {
-        //update values in ImageNode
-        //and move this to the front of the 
+        //update values in ImageNode as this becomes most recent
         ImageNode currentUpdate = this.getImage(name);
         this.size += (size - currentUpdate.data.size);
         currentUpdate.data.name = name;

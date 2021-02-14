@@ -68,7 +68,6 @@ public class AutoComplete {
             }
             currNode = currNode.children.get(c);
         }
-        //currNode is currently the next node after prefix 
         return autoCompleteTraversal(currNode, prefix);
     }
 
