@@ -22,6 +22,11 @@ Simple implementation
 ImageRepository imageRepo = new ImageRepository(500);
 imageRepo.uploadImage("hotwheelscar", 100, "https://hotwheelscars.com/images/1");
 ```
+Create compilation subfolder named target 
+
+```
+$ mkdir target
+```
 
 Compiles all files to a specified target folder
 
