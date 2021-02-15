@@ -52,7 +52,7 @@ public class AutoComplete {
                 break;
             }
         }
-        return node != null && node.terminal == true;
+        return node != null && node.terminal;
     }
 
     /*
@@ -61,10 +61,9 @@ public class AutoComplete {
       * @return List of Type String - List of Autocomplete searches from prefix */
     public List<String> autoCompleteSearch(String prefix) {
         CharNode currNode = this.root;
-        List<String> searchList = new ArrayList<String>();
         for (char c: prefix.toCharArray()) {
             if (!currNode.children.containsKey(c)) {
-                return searchList;
+                return new ArrayList<>();
             }
             currNode = currNode.children.get(c);
         }

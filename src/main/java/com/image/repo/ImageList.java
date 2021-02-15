@@ -12,8 +12,14 @@ public class ImageList {
     private int capacity;
     private ImageNode head;
     private ImageNode tail;
-    public Map<String, ImageNode> imageMap;
+    private Map<String, ImageNode> imageMap;
     public AutoComplete search;
+
+
+
+    public Map<String, ImageNode> getImageMap() {
+      return new HashMap<>(this.imageMap);
+    }
 
     /*
       * @desc inserts ImageNode into data structure
@@ -25,9 +31,9 @@ public class ImageList {
             currentImage.prev = this.head;
             currentImage.next = this.head.next;
             //head pointers -> slide the head.next behind new node 
-            ImageNode tempNext = head.next;
+            ImageNode tempNext = this.head.next;
             tempNext.prev = currentImage;
-            head.next = currentImage;
+            this.head.next = currentImage;
             this.size += currentImage.data.size;
             this.imageMap.put(currentImage.data.name, currentImage);
             this.search.insertion(currentImage.data.name);

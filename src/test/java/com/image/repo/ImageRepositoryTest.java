@@ -14,8 +14,8 @@ public class ImageRepositoryTest {
         List<String> autoCompleteResults = imageRepo.autoCompleteSearch("t"); 
 
 
-        assertTrue(imageRepo.imageStorage.imageMap.containsKey("testImage1"));
-        assertTrue(imageRepo.imageStorage.imageMap.containsKey("testImage2"));
+        assertTrue(imageRepo.imageStorage.getImageMap().containsKey("testImage1"));
+        assertTrue(imageRepo.imageStorage.getImageMap().containsKey("testImage2"));
 
         assertTrue(imageRepo.imageStorage.search.searchWord("testImage1"));
         assertTrue(imageRepo.imageStorage.search.searchWord("testImage2"));
@@ -32,7 +32,7 @@ public class ImageRepositoryTest {
 
         List<String> autoCompleteResults = imageRepo.autoCompleteSearch("t"); 
 
-        assertTrue(!imageRepo.imageStorage.imageMap.containsKey("testImage1"));
+        assertTrue(!imageRepo.imageStorage.getImageMap().containsKey("testImage1"));
         assertTrue(!imageRepo.imageStorage.search.searchWord("testImage1"));
         assertTrue(!autoCompleteResults.contains("testImage1"));
     }
@@ -46,7 +46,7 @@ public class ImageRepositoryTest {
         imageRepo.uploadImage("testImage4", 100, "https://images.com/testImage4");
         List<String> autoCompleteResults = imageRepo.autoCompleteSearch("t"); 
 
-        assertTrue(!imageRepo.imageStorage.imageMap.containsKey("testImage1"));
+        assertTrue(!imageRepo.imageStorage.getImageMap().containsKey("testImage1"));
         assertTrue(!imageRepo.imageStorage.search.searchWord("testImage1"));
         assertTrue(!autoCompleteResults.contains("testImage1"));
     }
@@ -62,7 +62,7 @@ public class ImageRepositoryTest {
 
         List<String> autoCompleteResults = imageRepo.autoCompleteSearch("t"); 
 
-        assertTrue(!imageRepo.imageStorage.imageMap.containsKey("testImage1"));
+        assertTrue(!imageRepo.imageStorage.getImageMap().containsKey("testImage1"));
         assertTrue(!imageRepo.imageStorage.search.searchWord("testImage1"));
         assertTrue(!autoCompleteResults.contains("testImage1"));
     }
@@ -74,11 +74,11 @@ public class ImageRepositoryTest {
         imageRepo.uploadImage("testImage2", 50, "https://images.com/testImage2");
         imageRepo.uploadImage("testImage3", 50, "https://images.com/testImage3");
 
-        int sizeBeforeInvalidDelete = imageRepo.imageStorage.imageMap.size();
+        int sizeBeforeInvalidDelete = imageRepo.imageStorage.getImageMap().size();
         imageRepo.deleteImage("testImage4");
         List<String> autoCompleteResults = imageRepo.autoCompleteSearch("t"); 
 
-        assertTrue(imageRepo.imageStorage.imageMap.size() == sizeBeforeInvalidDelete);
+        assertTrue(imageRepo.imageStorage.getImageMap().size() == sizeBeforeInvalidDelete);
         assertTrue(autoCompleteResults.size() == sizeBeforeInvalidDelete);
     }
 

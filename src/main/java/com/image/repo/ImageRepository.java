@@ -14,7 +14,7 @@ public class ImageRepository {
       * @param String name - name of image
       * @return Image - data including name, size and url of image */
     public Image getImage(String name) {
-      if (this.imageStorage.imageMap.containsKey(name)) {
+      if (this.imageStorage.getImageMap().containsKey(name)) {
         return this.imageStorage.getImage(name).data;
       } else {
         System.err.println("Image cannot be found in repository");
@@ -37,8 +37,8 @@ public class ImageRepository {
       * @param String name - name of image
       * @return void */
     public void deleteImage(String name) {
-        if (this.imageStorage.imageMap.containsKey(name)) {
-            this.imageStorage.delete(this.imageStorage.imageMap.get(name));
+        if (this.imageStorage.getImageMap().containsKey(name)) {
+            this.imageStorage.delete(this.imageStorage.getImageMap().get(name));
         } else {
           System.err.println("Image cannot be deleted since it does not exist in repository");
         }
@@ -49,7 +49,7 @@ public class ImageRepository {
       * @return List of Strings of all image names */
     public List<String> getAllImages() {
       List<String> allImagesList = new ArrayList<String>();
-      for (String name: this.imageStorage.imageMap.keySet()) {
+      for (String name: this.imageStorage.getImageMap().keySet()) {
         allImagesList.add(name);
       }
       return allImagesList;
