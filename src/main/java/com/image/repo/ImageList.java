@@ -15,8 +15,9 @@ public class ImageList {
     private Map<String, ImageNode> imageMap;
     public AutoComplete search;
 
-
-
+    /*
+      * @desc getter method for encapsulated imageMap
+      * @return Map - shallow copy of imageMap */
     public Map<String, ImageNode> getImageMap() {
       return new HashMap<>(this.imageMap);
     }
